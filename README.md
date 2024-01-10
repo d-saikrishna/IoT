@@ -1,2 +1,74 @@
 # IoT
-My notes of IoT
+
+I'm an absolute noob when it comes to hardware. I also have some phobia with it.
+
+So, on Newyear 2024, I gifted myself a Raspberry Pi 4 Model B to overcome my phobia. [Robocraze](https://robocraze.com/products/raspberry-pi4-model-b-4gb-ultimate-kit-with-pi4-model-b-4gb-case-power-adapter-heatsink-fan-hdmi-cable-ethernet-cable-16gb-sd-card-sensors-and-manual) gave me the best deal for the entire kit. They're also one of the [authorised resellers](https://www.raspberrypi.com/resellers/?q=India&country=1) in India.
+
+This seems like a good place to start learning: [Projects](https://projects.raspberrypi.org/en/projects?hardware%5B%5D=raspberry-pi)
+
+### Jan 6, 2024:
+Okay, I realise that I need other electrical components to do interesting project. But I can start with a few projects that don't need additional components. 
+
+A few projects can be done on Raspberry Pico. But what is it?
+
+Pico(Arduino) is a micro-controller based while Pi is a micro-processor based. I don't know the different between the both either.
+
+
+
+| Raspberry Pi    | Pico/Arduino |
+| -------- | ------- |
+| Entire Computer in itself  | More like a calculator    |
+| Micro-processor based | Micro-controller based     |
+| Has OS and all software overheads    | No OS. It just runs the logic you code |
+| Multiple tasks (like a computer)   | Runs one task at a time (like a calculator) |
+| Electrical components attached should have ~3V   | Electrical components attached can have 5V |
+| Python, C, Java etc  | C, C++|
+| More power  | Less power |
+| Costly  | Cheap |
+
+### Jan 8, 2024:
+
+I read on Raspberry Pi's User Guide that it requires a 5V, 3A charger. What if I use another charger? This question pushed me into a rabit hole of high school physics of electricity.
+
+Let's start with lightning. Because electricity was discovered there (Benjamin Franklin's kite experiment)
+
+This is how a lightning generally occurs. Clouds have negative charge. Ground has positive charge. But there is air in between. And air is an insulator (high resistance). Meaning, it has few charged particles whose movement is required for a current flow. So you won't see a lightning often.
+
+But, as the negative charge builds up in clouds, the electric potential between cloud and ground keeps increasing (let's call that Voltage is increasing). As voltage continously increases to one point, the particles of air gets ionised and now air has more charged particles. Air thus became a conductor and provides a pathway (like a wire) for the electrons. That pathway is the lightning. This breakdown of air (any insulator) from being a resistor to a conductor is called Electric breakdown.
+
+![Alt text](assets/lightning.png)
+
+As electrons flow rapidly, they collide with atoms in the way. This collission (Kinetic Energy) heats up the air, apparently upto some 50,000 degrees. Various gas atoms are excited at that temperature giving the color you see.
+
+Now, say you put a electric bulb in this lightning strike pathway :) You can light that bulb using this natural phenomenon. This is like putting a turbine in the path of flowing water and generating mechanical energy.
+
+But there is a problem. There are so many electrons flowing in the lightning strike that air (bad conductor again) itself got heated. Your electric bulb will die as it cannot handle such high current (current = flow of charge/electrons). So you want to reduce or regulate current?
+
+After doing a lot of experiments, Georg Ohm discovered that to reduce current you have to reduce Voltage or increase resistance. Air is already one of the highest resistance substances. You cannot find a bulb with more resistance than that. So you have to reduce voltage. I don't think you can do it between clouds and ground (you'll probably get a Nobel Prize if you can do it). But Alessandro Volta had created a [battery](https://www.youtube.com/watch?v=9OVtk6G2TnQ) with lesser voltage.
+
+Now, instead of putting your bulb in between the cloud-burn circuit (and burning it), you can put in a circuit with the battery. But, this battery hass less voltage - air is back to being an insulator. So instead of air, find some other material that can work as a conductor with this less voltage battery. Copper wires! Being metals, they have a lot of charged particles that can provide the pathway for electrons from negative side of the battery to positive side of the battery.
+
+Back to Raspberry Pi.
+
+5V, 3A means that the Pi needs 3 Amperes of current across a 5 Volts difference across it. I think it has a 1.67 Ohms resistance. So, when connected to a 5V power supply, it can draw 3 Amperes of current. You just have to ensure that your 5V charger can safely give 3A current.
+1. Don't think about using a charger with higher voltage rating like 9V. With 1.67 Ohms load, Pi will draw some 5.4A current (when it only requires 3A). It would be damaged. If Lesser voltage rating (3V) then the Pi will draw less power than required.
+2. 5V but higher Amperage, say 5A. Go ahead. Any way, your Pi will draw 3A only based on its resistance. Less amperage, your Pi might not switch on or slow down.
+
+
+### Jan9, 2024
+
+Have to choose OS today for my Pi. Used the recommended 64 bit Raspberry Pi OS. Can explore Ubuntu and others as well.
+
+Connected Pi to TV via HDMI. The Pi will use TV's audio system - HDMI0 -> HDMI2 
+
+If I use my Pi as a server, how much will it cost me? It's a 15W device. So, if I use it 24*7, I'll consume 15*30*24/100 kwh = (10.8 kWh)
+
+### Jan10, 2024
+
+I SSHed into Pi today. It's easy when you can connect your Pi to the monitor and see its ipaddress ```ifconfig```. I SSHed first this way.
+
+But then what if I take my Pi somewhere where there is no monitor? How will I know the IP of my Pi?
+
+1. Note down the MAC address: d8:3a:dd:7d:18:53 of your Pi
+2. Open Router Interface. I have JioFiber - [192.168.29.1](192.168.29.1) and login.
+3. Check you W/LAN Clients and find the MAC address of your Pi. You'll see a IPv4 or IPv6 address. Use it to ssh into your Pi!

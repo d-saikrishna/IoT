@@ -72,3 +72,33 @@ But then what if I take my Pi somewhere where there is no monitor? How will I kn
 1. Note down the MAC address: d8:3a:dd:7d:18:53 of your Pi
 2. Open Router Interface. I have JioFiber - [192.168.29.1](192.168.29.1) and login.
 3. Check you W/LAN Clients and find the MAC address of your Pi. You'll see a IPv4 or IPv6 address. Use it to ssh into your Pi!
+
+Deployed my SamvidhanBot on Pi.
+1. Raspbian Pi OS has git and Python pre-installed. `sudo apt install virtualenv` to install virtuanenv. (On local you can do `sudo pip install virtualenv`)
+
+### Jan11, 2024
+
+Learnt to run a shell script on startup of my RPi. `crontab @reboot` method did not work I don't know why.
+
+        sudo nano /etc/rc.local
+        # Add the following before exit 0
+        /bin/bash /path/to/your/script.sh
+
+rc.local file is the file that the Linux system runs on startup. So if you include a script there, it will also run on startup.
+
+### Jan 13, 2024
+
+Nithish Gnani suggested that I build a NAS (Network attached storage) using RPi. Basically its my own cloud storage. I have a few old harddisks which I can re-purpose for this. [Here's a good tutorial](https://www.pcmag.com/how-to/how-to-turn-a-raspberry-pi-into-a-nas-for-whole-home-file-sharing).
+
+That tutorial messed up something when I edited the `/mnt/etc/fstab` file. Herwig's comment in this [blog](https://www.htgsd.com/information-technology/fix-rpi-with-cannot-open-access-to-console-the-root-account-is-locked/) helped me resolve. Should try NAS again later.
+
+### Jan 14, 2024
+NAS. People suggest that we have to use a powered USB hub to power the External harddisk. But why? You can connect your HDDs directly to your system right?
+
+![Alt text](assets/powered-usb-hub-circuit.jpeg)
+
+So when we connect HDD to the RPi, it is basically a parallel connection (HDD also needs 5V*0.85A power supply). As a result, the overall current in the circuit increases to 3.85A
+
+But my RPi charger was designed for 5V*3A. This is an instance of current overload. If I connect more HDDs, overload will be bigger and that might cause an issue. I've to get a powered US Hub if I plan to host a NAS server 24/7. 
+
+NAS is working on my local. I've to learn port forwarding to make my Pi and NAS available over internet now.

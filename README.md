@@ -110,3 +110,9 @@ NAS is working on my local. I've to learn port forwarding to make my Pi and NAS 
 Carrier-Grade Network Address Translation (CGNAT): Jio Fiber uses CGNAT. So I cannot do port forwarding by simply logging into router and opening ports.
 
 Generally (NAT) ISPs provide you one public IP (assigned to the router) to which your private devices can connect to. But in CGNAT, multiple customers (routers) are given one public IP. CGNAT came up because of IPv4 addresses shortage.
+
+Then came IPv6 addresses. These are abundant. So many that each device connected to internet get one. They might not be static though (you will have to buy one so). Anyways, IPv6 addresses help you connect to the internet (they are public).
+
+Used these IPv6 addresses to do port forwarding on Jio Fiber.
+
+Completed building a NAS with RPi. Files can be accessed with SFTP.

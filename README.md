@@ -102,3 +102,11 @@ So when we connect HDD to the RPi, it is basically a parallel connection (HDD al
 But my RPi charger was designed for 5V*3A. This is an instance of current overload. If I connect more HDDs, overload will be bigger and that might cause an issue. I've to get a powered US Hub if I plan to host a NAS server 24/7. 
 
 NAS is working on my local. I've to learn port forwarding to make my Pi and NAS available over internet now.
+
+### Jan 15, 2024
+
+![GeeksforGeeks-PublicIPvsPrivateIP](assets/public-private-ip.png)
+
+Carrier-Grade Network Address Translation (CGNAT): Jio Fiber uses CGNAT. So I cannot do port forwarding by simply logging into router and opening ports.
+
+Generally (NAT) ISPs provide you one public IP (assigned to the router) to which your private devices can connect to. But in CGNAT, multiple customers (routers) are given one public IP. CGNAT came up because of IPv4 addresses shortage.

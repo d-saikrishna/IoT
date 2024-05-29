@@ -19,7 +19,7 @@ MORSE_CODE_DICT = {
 }
 
 # Define time units
-DIT_DURATION = 0.5   # duration of a dit
+DIT_DURATION = 0.3   # duration of a dit
 DAH_DURATION = DIT_DURATION * 3   # duration of a dah
 LETTER_SPACE = DIT_DURATION * 3   # space between letters
 WORD_SPACE = DIT_DURATION * 7     # space between words
@@ -30,7 +30,7 @@ def text_to_morse(text):
     for char in text.upper():
         if char in MORSE_CODE_DICT:
             morse_code.append(MORSE_CODE_DICT[char])
-    return ' '.join(morse_code)
+    return '/'.join(morse_code)
 
 def flash_led(morse_code):
     """Flash LED according to Morse code."""
@@ -39,12 +39,16 @@ def flash_led(morse_code):
             led.on()
             time.sleep(DIT_DURATION)
             led.off()
+            time.sleep(DIT_DURATION)
         elif symbol == '-':
             led.on()
             time.sleep(DAH_DURATION)
             led.off()
+            time.sleep(DAH_DURATION)
         elif symbol == ' ':
             time.sleep(WORD_SPACE)
+        elif symbol == '/':
+             time.sleep(LETTER_SPACE)
 
 def main():
     text = input("Enter text to flash in Morse code: ")

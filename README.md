@@ -116,3 +116,16 @@ Then came IPv6 addresses. These are abundant. So many that each device connected
 Used these IPv6 addresses to do port forwarding on Jio Fiber.
 
 Completed building a NAS with RPi. Files can be accessed with SFTP.
+
+### May 29, 2024
+
+Coming after a long break. I'd been to Bangalore last weekend where I met [Balu Babu](https://x.com/AskBaluBabu), an hardware geek. He is responsible for me reopening this again.
+
+I did my first electronics project! **A blinking LED with a morse code twist!** Morse code because I just cleared HAM Radio License exam last week :)
+
+The code for it is in `Projects/led_morse.py`
+
+Decode this
+<video controls src="assets/world.mp4" title="Hello World - Morse LED"></video>
+
+This [video](https://www.youtube.com/watch?v=CL39xCXdU64) helped me a lot in doing this.

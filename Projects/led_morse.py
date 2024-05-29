@@ -44,7 +44,7 @@ def flash_led(morse_code):
             led.on()
             time.sleep(DAH_DURATION)
             led.off()
-            time.sleep(DAH_DURATION)
+            time.sleep(DIT_DURATION)
         elif symbol == ' ':
             time.sleep(WORD_SPACE)
         elif symbol == '/':

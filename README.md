@@ -129,3 +129,23 @@ Decode this
 <video controls src="assets/world.mp4" title="Hello World - Morse LED"></video>
 
 This [video](https://www.youtube.com/watch?v=CL39xCXdU64) helped me a lot in doing this.
+
+### May 31, 2024
+
+I worked on push buttons. I did a mistake not knowing how GPIO pins exactly work.I connected the push button and the LED to the same GPIO pin. And then I wanted the GPIO to also receive input from the button apart from giving output to the LED. Not right. I used two pins (one pin receives input from button; other powers the LED) and now I get what I want -- Button toggling LED light.
+
+<video controls src="assets/button_led.mp4" title="Button - LED"></video>
+
+The code for it is in `Projects/button_led.py`
+
+Learnt about debouncing push buttons. Basically, due to the mechanical vibrations involved GPIO may read one push as several pushes. So yove select a timeframe in which any number of recorded pushes are treated as one push. 
+
+I don't think all pins output voltage by default. When I connect LED to a GPIO Pin, it would glow only when I give output via code. However, my GPIO2 is constantly giving out voltage. LED is glowing but very dimly. Not sure if its a feature or a bug. Shreekumar said that it is because GPIO2 pin is I2C and has low internal pull-up resistor (thus giving out a high voltage out default).
+
+### June 3, 2024
+
+I built a Morse Code transmitter with an active buzzer and a PNP transistor. This [resource](https://docs.sunfounder.com/projects/superkit-v3-pi/en/latest/Lesson_6_buzzer.html) was helpful for code. Tutorials were generally suggesting the buzzer be connected to the 5V pin and the base of the transistor be connected to a GPIO pin of 3.3V. But I faced a problem with this - even when the GPIO OUT (to transistor) is HIGH, the transistor is still forward biased and there is a feeble beep. So I connected the buzzer to 3.3V pin. Now, when the GPIO OUT is HIGH, the transistor goes to reverse bias - no beep.
+
+The code for it is in `Projects/morsetransmit.py`
+
+ <video controls src="assets/morsebeep.mp4" title="Title"></video>

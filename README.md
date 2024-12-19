@@ -1,5 +1,21 @@
 # IoT
 
+### December 17-19, 2024
+Suffered to get the ESP8266 MCU to start to work. Took me two days to realise its the cable!
+So Micro USB cable shouls also do data transfer for it to be useful with MCUs. #TIL
+
+I have a ESP8266-12E NodeMCU 0.9 Board. Use this [link](https://randomnerdtutorials.com/getting-started-with-esp8266-wifi-transceiver-review/) to get started on it.
+
+Working with [Grove Air Quality Sensor v1.3](https://robu.in/product/grove-air-quality-sensor-v1-3/). Thejesh GN sent me his sensors.
+It is useful for indoor air quality testing - but only qualitiaitve. It reports four types of air quality:
+`fresh air`, `low pollution`, `high pollution`, `very high pollution`
+
+[Sending data to google sheet from ESP8266](https://www.youtube.com/watch?v=okNECYf2xlY)
+Basically create an end-point that updates a database. Ping that endpoint with relevant parameters using ESP8266. 
+
+`Projects\aqsensor`
+
+## Jan 2, 2024
 I'm an absolute noob when it comes to hardware. I also have some phobia with it.
 
 So, on Newyear 2024, I gifted myself a Raspberry Pi 4 Model B to overcome my phobia. [Robocraze](https://robocraze.com/products/raspberry-pi4-model-b-4gb-ultimate-kit-with-pi4-model-b-4gb-case-power-adapter-heatsink-fan-hdmi-cable-ethernet-cable-16gb-sd-card-sensors-and-manual) gave me the best deal for the entire kit. They're also one of the [authorised resellers](https://www.raspberrypi.com/resellers/?q=India&country=1) in India.
@@ -11,7 +27,7 @@ Okay, I realise that I need other electrical components to do interesting projec
 
 A few projects can be done on Raspberry Pico. But what is it?
 
-Pico(Arduino) is a micro-controller based while Pi is a micro-processor based. I don't know the different between the both either.
+Pico(Arduino) is a micro-controller based while Pi is micro-processor based. I don't know the difference between the both either.
 
 
 
@@ -144,8 +160,19 @@ I don't think all pins output voltage by default. When I connect LED to a GPIO P
 
 ### June 3, 2024
 
-I built a Morse Code transmitter with an active buzzer and a PNP transistor. This [resource](https://docs.sunfounder.com/projects/superkit-v3-pi/en/latest/Lesson_6_buzzer.html) was helpful for code. Tutorials were generally suggesting the buzzer be connected to the 5V pin and the base of the transistor be connected to a GPIO pin of 3.3V. But I faced a problem with this - even when the GPIO OUT (to transistor) is HIGH, the transistor is still forward biased and there is a feeble beep. So I connected the buzzer to 3.3V pin. Now, when the GPIO OUT is HIGH, the transistor goes to reverse bias - no beep.
+I built a Morse Code transmitter with an active buzzer and a PNP transistor. This [resource](https://docs.sunfounder.com/projects/superkit-v3-pi/en/latest/Lesson_6_buzzer.html) was helpful for code. Tutorials were generally suggesting the Emitter be connected to the 5V pin and the base of the transistor be connected to a GPIO pin of 3.3V. But I faced a problem with this - even when the GPIO OUT (to transistor base) is HIGH, the Emisttor-Base junction is still forward biased. Because the voltage difference is 1.7V>0.7V and thus there is a feeble beep. So I connected the Emitter to 3.3V pin. Now, when the GPIO OUT is HIGH, there is no sufficient voltage (0<0.7V) to overcome the barrier - no beep.
 
 The code for it is in `Projects/morsetransmit.py`
 
  <video controls src="assets/morsebeep.mp4" title="Title"></video>
+
+ I made a mistake. I connected Emitter to Ground in the video above. This is not the correct use of a PNP transistor. It is an inverted use. 
+
+Built one morse receiver. It takes in input text, converts it into morse code and then beeps it.
+
+The code for it is in `Projects/morse_receive.py`
+
+### September 2, 2024
+
+Working with LCD1602 display. This [video](https://www.youtube.com/watch?v=DHbLBTRpTWM) has helped me in getting started
+
